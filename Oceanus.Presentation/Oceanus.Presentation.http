@@ -1,0 +1,6 @@
+@Oceanus.Presentation_HostAddress = http://localhost:5037
+
+GET {{Oceanus.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

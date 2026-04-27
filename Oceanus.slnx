@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Oceanus.Application/Oceanus.Application.csproj" />
+  <Project Path="Oceanus.Domain/Oceanus.Domain.csproj" />
+  <Project Path="Oceanus.Infrastructure/Oceanus.Infrastructure.csproj" />
+  <Project Path="Oceanus.Presentation/Oceanus.Presentation.csproj" />
+</Solution>

@@ -1,0 +1,15 @@
+# .NET
+[Bb]in/
+[Oo]bj/
+out/
+.vs/
+.vscode/
+
+# Docker и ИИ-модели (НЕЛЬЗЯ отправлять гигабайты моделей на GitHub!)
+docker_data/
+*.db
+*.log
+
+# Настройки (пароли и ключи, если будут)
+.env
+appsettings.Development.json
