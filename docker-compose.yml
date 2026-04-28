@@ -1,19 +1,23 @@
- version: '3.8'
+ version: '3.9'
  services:
    ollama:
-     image: ollama/ollama:latest
-     container_name: oceanus-ollama
-     ports:
-       - "11434:11434"
-     environment:
-       - NVIDIA_VISIBLE_DEVICES=all
-       - CUDA_VISIBLE_DEVICES=0  # GTX 1660 Ti GPU index
-     volumes:
-       - ollama-data:/root/.ollama
-     networks:
-       - oceanus-network
-     restart: unless-stopped
-     command: serve
+    image: ollama/ollama:latest
+    container_name: oceanus-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - oceanus-network
+    restart: unless-stopped
+    # ОСТАВЛЯЕМ ТОЛЬКО ЭТО ДЛЯ GPU:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
  
    qdrant:
      image: qdrant/qdrant:latest

@@ -23,6 +23,17 @@ builder.Services.AddSingleton(ollamaSettings);
  builder.Services.AddHttpClient<OllamaService>();
  builder.Services.AddScoped<ILlmService, OllamaService>();
 
+ // Register Qdrant Vector Service
+ var qdrantSettings = new Oceanus.Infrastructure.Configuration.QdrantSettings
+ {
+     BaseUrl = builder.Configuration["Qdrant:BaseUrl"] ?? "http://localhost:6333",
+     ApiKey = builder.Configuration["Qdrant:ApiKey"] ?? ""
+ };
+ builder.Services.AddSingleton(qdrantSettings);
+ 
+ builder.Services.AddHttpClient<QdrantService>();
+ builder.Services.AddScoped<IVectorService, QdrantService>();
+
 // Register Application Services
  builder.Services.AddScoped<IChatService, ChatService>();
  
