@@ -1,0 +1,39 @@
+ version: '3.8'
+ services:
+   ollama:
+     image: ollama/ollama:latest
+     container_name: oceanus-ollama
+     ports:
+       - "11434:11434"
+     environment:
+       - NVIDIA_VISIBLE_DEVICES=all
+       - CUDA_VISIBLE_DEVICES=0  # GTX 1660 Ti GPU index
+     volumes:
+       - ollama-data:/root/.ollama
+     networks:
+       - oceanus-network
+     restart: unless-stopped
+     command: serve
+ 
+   qdrant:
+     image: qdrant/qdrant:latest
+     container_name: oceanus-qdrant
+     ports:
+       - "6333:6333"
+     volumes:
+       - qdrant-data:/qdrant/storage
+     networks:
+       - oceanus-network
+     restart: unless-stopped
+     environment:
+       - QDRANT_API_KEY=${QDRANT_API_KEY:-}
+ 
+ volumes:
+   ollama-data:
+     driver: local
+   qdrant-data:
+     driver: local
+ 
+ networks:
+   oceanus-network:
+     driver: bridge

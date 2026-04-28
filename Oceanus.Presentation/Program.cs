@@ -11,10 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
  builder.Services.AddSwaggerGen();
 
 
-var ollamaSettings = new Oceanus.Infrastructure.Configuration.OllamaSettings
+var ollamaSettings = new OllamaSettings
 {
     BaseUrl = builder.Configuration["Ollama:BaseUrl"] ?? "http://localhost:11434",
-    Model = builder.Configuration["Ollama:Model"] ?? "llama2",
+    Model = builder.Configuration["Ollama:Model"] ?? "qwen3:8b",
     Timeout = int.Parse(builder.Configuration["Ollama:Timeout"] ?? "300")
 };
 builder.Services.AddSingleton(ollamaSettings);
